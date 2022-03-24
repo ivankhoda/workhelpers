@@ -13,7 +13,7 @@ const balanceURL = process.env.BALANCE_URL;
 const testCustomer = process.env.TEST_CUSTOMER;
 
 const authAgent = new AuthorizationAgent(login, password, trustor);
-//onst token = authAgent.getTrustToken();
+
 const getToken = async () => {
   let data = await authAgent.getTrustToken().then((res) => res);
 
