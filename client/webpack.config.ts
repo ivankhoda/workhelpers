@@ -2,20 +2,21 @@ import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import path from "path";
-import { Configuration } from "webpack";
+
 const isProduction = process.env.NODE_ENV === "production";
-const config: Configuration = {
+
+const config = {
   entry: "./src/index.tsx",
 
   module: {
     rules: [
       {
         test: /\.(ts|js)x?$/,
-        exclude: /node_modules/,
+        exclude: [/node_modules/, /^(?!.*\.test\.tsx$).*\.ts$/],
         use: {
           loader: "babel-loader",
           options: {
-            presets: ["@babel/preset-env", "@babel/preset-react", "@babel/preset-typescript"],
+            presets: ["@babel/preset-env", ["@babel/preset-react"], "@babel/preset-typescript"],
           },
         },
       },
@@ -30,22 +31,13 @@ const config: Configuration = {
           "sass-loader",
         ],
       },
-      {
-        test: /\.(mp3|wav)$/i,
-        loader: "file-loader",
-        options: {
-          name: "[path][name].[ext]",
-          context: "",
-          esModule: false,
-        },
-      },
     ],
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js", ".css", ".scss"],
+    extensions: [".ts", ".tsx", ".js", ".css", ".scss"],
   },
   output: {
-    publicPath: isProduction ? "/timer/" : "/",
+    publicPath: isProduction ? "/control_panel_ui/" : "/",
     filename: "[name].js",
   },
   devServer: {
@@ -59,9 +51,9 @@ const config: Configuration = {
   plugins: [
     new ForkTsCheckerWebpackPlugin({
       async: false,
-      eslint: {
-        files: "./src/**/*.{ts,tsx,js,jsx}",
-      },
+      // eslint: {
+      //   files: "./src/**/*.{ts,tsx,js,jsx}",
+      // },
     }),
     new MiniCssExtractPlugin({ filename: "[name].[contenthash].css" }),
     new HtmlWebpackPlugin({
