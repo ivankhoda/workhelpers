@@ -1,0 +1,72 @@
+import ReactTestUtils from "react-dom/test-utils";
+import { createContainer } from "../../TestHelpers/domManipulators";
+import { Login } from "./Login";
+
+describe("Login page", () => {
+  let container, render;
+  const form = (id) => container.querySelector(`form[id="${id}"]`);
+  const field = (fieldName) => form(fieldName).elements[fieldName];
+  const expectToBeInputFieldOfTypeText = (formElement) => {
+    expect(formElement).not.toBeNull();
+    expect(formElement.tagName).toEqual("INPUT");
+    expect(formElement.type).toEqual("text");
+  };
+
+  const labelFor = (formElement) => container.querySelector(`label[for="${formElement}"]`);
+
+  const itRendersFieldAsAtextBox = (fieldName) => {
+    it("renders as a text box", () => {
+      render(<Login />);
+      expectToBeInputFieldOfTypeText(field(fieldName));
+    });
+  };
+
+  const itRendersAlabelForField = (fieldName) => {
+    it("includes the existing value", () => {
+      render(<Login />);
+      expect(labelFor(fieldName)).not.toBeNull();
+      expect(labelFor(fieldName).textContent).toEqual(fieldName);
+    });
+  };
+
+  const itAssignsAnId = (fieldName, id) => {
+    it("assigns an id that matches the label id to the login field", () => {
+      render(<Login />);
+      expect(field(fieldName).id).toEqual(fieldName);
+    });
+  };
+
+  beforeEach(() => {
+    ({ render, container } = createContainer());
+  });
+  it("Renders a Login form", () => {
+    render(<Login />);
+    expect(form("login")).not.toBeNull();
+  });
+
+  describe("Login field", () => {
+    itRendersFieldAsAtextBox("login");
+
+    itRendersAlabelForField("login");
+
+    itAssignsAnId("login", "login");
+
+    // it.skip("renders a label for the login field", () => {
+    //   render();
+    //   expect(labelFor("login").textContent).toEqual("Login");
+    // });
+  });
+  describe("Password field", () => {
+    itRendersFieldAsAtextBox("password");
+
+    itRendersAlabelForField("password");
+
+    itAssignsAnId("password", "password");
+  });
+
+  it("saves existing first name when submitted", async () => {
+    render(<Login onSubmit={({ firstName }) => expect(firstName).toEqual("Ashley")} />);
+    expect.hasAssertions();
+    await ReactTestUtils.Simulate.submit(form("customer"));
+  });
+});

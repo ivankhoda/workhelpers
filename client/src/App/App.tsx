@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Header } from "../Header/Header";
 import { Sidebar } from "../Sidebar/Sidebar";
 import "../style.scss";
@@ -6,6 +6,10 @@ import { WorkingPanel } from "../WorkingPanel/WorkingPanel";
 import "./App.style.scss";
 
 export const App = () => {
+  const [token, setToken] = useState();
+  // if(!token) {
+  //   return <Login setToken={setToken} />
+  // }
   // const routes = [
   //   { path: "/", name: "Dashboard", Component: <Dashboard /> },
   //   { path: "/stats", name: "Settings", Component: <Statistics /> },
