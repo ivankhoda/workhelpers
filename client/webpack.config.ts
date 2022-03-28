@@ -51,9 +51,6 @@ const config = {
   plugins: [
     new ForkTsCheckerWebpackPlugin({
       async: false,
-      // eslint: {
-      //   files: "./src/**/*.{ts,tsx,js,jsx}",
-      // },
     }),
     new MiniCssExtractPlugin({ filename: "[name].[contenthash].css" }),
     new HtmlWebpackPlugin({

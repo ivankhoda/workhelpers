@@ -1,7 +1,7 @@
 @import "./mixin";
 
-$background-color: #edf1ff;
-$body-color: #282d3c;
+// $background-color: #edf1ff;
+// $body-color: #282d3c;
 .root,
 .settings {
   width: 100%;
@@ -30,8 +30,8 @@ a {
 html,
 body {
   width: 100%;
-  color: $body-color;
-  background-color: $background-color;
+  // color: $body-color;
+  // background-color: $background-color;
   display: flex;
 
   justify-content: center;

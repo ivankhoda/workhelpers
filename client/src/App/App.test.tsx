@@ -1,24 +1,19 @@
-import ReactDOM from "react-dom";
+import { createContainer } from "../../TestHelpers/domManipulators";
 import { Header } from "../Header/Header";
 import { Sidebar } from "../Sidebar/Sidebar";
 import { WorkingPanel } from "../WorkingPanel/WorkingPanel";
 import { App } from "./App";
 
 describe("App", () => {
-  let container;
+  let container, render;
 
   beforeEach(() => {
-    container = document.createElement("div");
-    document.body.appendChild(container);
+    ({ render, container } = createContainer());
   });
-  // eslint-disable-next-line react/no-render-return-value
-  const render = (component) => ReactDOM.render(component, container);
 
   it("Renders App main component", () => {
-    const text = "Welcome to Control panel";
-
     render(<App />);
-    expect(document.body.textContent).toMatch(text);
+    expect(<App />).not.toBe(null);
   });
   it("Renders Header component", () => {
     render(<Header />);
