@@ -1,65 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1648491789394" clover="3.2.0">
-  <project timestamp="1648491789394" name="All files">
-    <metrics statements="23" coveredstatements="18" conditionals="0" coveredconditionals="0" methods="10" coveredmethods="7" elements="33" coveredelements="25" complexity="0" loc="23" ncloc="23" packages="6" files="6" classes="6"/>
-    <package name="TestHelpers">
-      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-      <file name="domManipulators.ts" path="/Users/ivan/websites/work/client/TestHelpers/domManipulators.ts">
-        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-        <line num="2" count="3" type="stmt"/>
-        <line num="3" count="14" type="stmt"/>
-        <line num="4" count="14" type="stmt"/>
-        <line num="5" count="13" type="stmt"/>
-      </file>
-    </package>
-    <package name="src.App">
-      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="App.tsx" path="/Users/ivan/websites/work/client/src/App/App.tsx">
-        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="8" count="2" type="stmt"/>
-        <line num="9" count="2" type="stmt"/>
-        <line num="17" count="2" type="stmt"/>
-      </file>
-    </package>
-    <package name="src.Header">
-      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="Header.tsx" path="/Users/ivan/websites/work/client/src/Header/Header.tsx">
-        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="4" count="2" type="stmt"/>
-        <line num="5" count="3" type="stmt"/>
-      </file>
-    </package>
-    <package name="src.Login">
-      <metrics statements="11" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="1"/>
-      <file name="Login.tsx" path="/Users/ivan/websites/work/client/src/Login/Login.tsx">
-        <metrics statements="11" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="1"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="14" count="0" type="stmt"/>
-        <line num="17" count="2" type="stmt"/>
-        <line num="18" count="11" type="stmt"/>
-        <line num="19" count="9" type="stmt"/>
-        <line num="20" count="9" type="stmt"/>
-        <line num="21" count="0" type="stmt"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="26" count="0" type="stmt"/>
-        <line num="28" count="9" type="stmt"/>
-        <line num="41" count="2" type="stmt"/>
-      </file>
-    </package>
-    <package name="src.Sidebar">
-      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="Sidebar.tsx" path="/Users/ivan/websites/work/client/src/Sidebar/Sidebar.tsx">
-        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="4" count="3" type="stmt"/>
-      </file>
-    </package>
-    <package name="src.WorkingPanel">
-      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="WorkingPanel.tsx" path="/Users/ivan/websites/work/client/src/WorkingPanel/WorkingPanel.tsx">
-        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="18" count="3" type="stmt"/>
-      </file>
-    </package>
+<coverage generated="1648558226667" clover="3.2.0">
+  <project timestamp="1648558226667" name="All files">
+    <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0" elements="0" coveredelements="0" complexity="0" loc="0" ncloc="0" packages="0" files="0" classes="0"/>
   </project>
 </coverage>

@@ -5,7 +5,7 @@ import { Login } from "./Login";
 describe("Login page", () => {
   let container, render;
   const form = (id) => container.querySelector(`form[id="${id}"]`);
-  const field = (fieldName) => form(fieldName).elements[fieldName];
+  const field = (fieldName) => form("login").elements[fieldName];
   const expectToBeInputFieldOfTypeText = (formElement) => {
     expect(formElement).not.toBeNull();
     expect(formElement.tagName).toEqual("INPUT");
@@ -16,23 +16,23 @@ describe("Login page", () => {
 
   const itRendersFieldAsAtextBox = (fieldName) => {
     it("renders as a text box", () => {
-      render(<Login />);
+      render(<Login onSubmit={() => {}} />);
       expectToBeInputFieldOfTypeText(field(fieldName));
     });
   };
 
   const itRendersAlabelForField = (fieldName) => {
     it("includes the existing value", () => {
-      render(<Login />);
+      render(<Login onSubmit={() => {}} />);
       expect(labelFor(fieldName)).not.toBeNull();
       expect(labelFor(fieldName).textContent).toEqual(fieldName);
     });
   };
 
   const itAssignsAnId = (fieldName, id) => {
-    it("assigns an id that matches the label id to the login field", () => {
-      render(<Login />);
-      expect(field(fieldName).id).toEqual(fieldName);
+    it("assigns an id that matches the label id to the  field", () => {
+      render(<Login onSubmit={() => {}} />);
+      expect(field(fieldName).id).toEqual(id);
     });
   };
 
@@ -40,7 +40,7 @@ describe("Login page", () => {
     ({ render, container } = createContainer());
   });
   it("Renders a Login form", () => {
-    render(<Login />);
+    render(<Login onSubmit={() => {}} />);
     expect(form("login")).not.toBeNull();
   });
 
@@ -65,8 +65,9 @@ describe("Login page", () => {
   });
 
   it("saves existing first name when submitted", async () => {
-    render(<Login onSubmit={({ firstName }) => expect(firstName).toEqual("Ashley")} />);
     expect.hasAssertions();
-    await ReactTestUtils.Simulate.submit(form("customer"));
+    render(<Login password={"123"} onSubmit={(e: React.FormEvent<HTMLFormElement>) => console.log(e.currentTarget)} />);
+
+    await ReactTestUtils.Simulate.submit(form("login"));
   });
 });

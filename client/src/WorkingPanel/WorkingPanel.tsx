@@ -1,6 +1,10 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import "./WorkingPanel.style.scss";
-export const WorkingPanel = () => {
+
+interface HeaderProps {
+  children: any;
+}
+export const WorkingPanel: React.FC<PropsWithChildren<HeaderProps>> = ({ children }) => {
   // const [data, setData] = useState();
   // useEffect(() => {
   //   const fetchsample = async () => {
@@ -15,5 +19,5 @@ export const WorkingPanel = () => {
   //   fetchsample();
   // }, []);
 
-  return <div className="WorkingPanel">Working panel</div>;
+  return <div className="WorkingPanel">{children}</div>;
 };
