@@ -6,13 +6,13 @@ export const AvatarIcon = (props: IconInfo) => {
   const name = props.className;
   const renderSwitch = (arg: string) => {
     switch (arg) {
-      case "red":
+      case "offline":
         return (
           <g filter="url(#filter0_d_10_1855)">
             <circle cx="35" cy="5" r="3" fill="#FF4D4F" />
           </g>
         );
-      case "green":
+      case "online":
         return (
           <g filter="url(#filter0_d_10_1855)">
             <circle cx="35" cy="5" r="3" fill="#1cca24" />

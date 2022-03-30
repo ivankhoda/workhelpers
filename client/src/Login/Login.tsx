@@ -1,4 +1,5 @@
 import React, { SetStateAction, useState } from "react";
+import "./Login.style.scss";
 type Form = {
   setToken: React.Dispatch<SetStateAction<undefined>>;
 };
@@ -24,16 +25,17 @@ export const Login = (props: Form) => {
       login,
       password,
     });
-    console.log(token, "token from login component");
+
     setToken(token);
   };
   return (
     <>
-      <form id="login" onSubmit={handleSubmit}>
-        <label htmlFor="login">login</label>
+      <p className="login_title">Please login first</p>
+      <form id="login" className="Login" onSubmit={handleSubmit}>
+        <label htmlFor="login">Login</label>
         <input type="text" name="login" id="login" value={login} onChange={(e) => setLogin(e.target.value)} />
 
-        <label htmlFor="password">password</label>
+        <label htmlFor="password">Password</label>
         <input
           type="text"
           name="password"
@@ -48,6 +50,3 @@ export const Login = (props: Form) => {
     </>
   );
 };
-// Login.propTypes = {
-//   setToken: PropTypes.func.isRequired,
-// };

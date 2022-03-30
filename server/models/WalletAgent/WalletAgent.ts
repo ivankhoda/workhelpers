@@ -4,6 +4,7 @@ export class WalletAgent {
   url: string;
   customer: string;
   orders?: { number: string }[];
+  balance?: string;
 
   constructor(token: string | void | Promise<void>, url: string, customer: string, orders?: { number: string }[]) {
     this.token = token;
@@ -18,23 +19,27 @@ export class WalletAgent {
   }
 
   async getWalletAmount() {
-    let newToken = await this.getToken();
+    // let newToken = await this.getToken();
+
     const config = {
-      headers: { Authorization: `Bearer ${newToken}`, "content-type": "application/json" },
+      headers: { Authorization: `${this.token}`, "content-type": "application/json" },
     };
     const body = [
       { key: "in_wallet", values: ["true"] },
       { key: "state", values: ["open"] },
       { key: "debitor_id", values: [`${this.customer}`] },
     ];
-    axios
+    return (this.balance = await axios
       .post(this.url, body, config)
       .then((res: any) => {
-        console.log(res.data);
+        const data = res.data;
+
+        return data;
       })
+
       .catch((error: any) => {
         console.log(error);
-      });
+      }));
   }
   async applyWallet() {
     let newToken = await this.getToken();

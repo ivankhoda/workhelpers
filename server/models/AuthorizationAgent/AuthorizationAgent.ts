@@ -32,7 +32,8 @@ export class AuthorizationAgent {
         return res.data;
       })
       .catch((error: any) => {
-        console.error(error);
+        console.log(error.response.data, "token");
+        return error;
       });
   }
   async getTrustToken() {
@@ -43,10 +44,10 @@ export class AuthorizationAgent {
     return (this.trustToken = await axios
       .get(`${baseURL}/api/v0/registry/oauth/token/${this.trustor}`, config)
       .then((res: any) => {
-        return res.data;
+        return res;
       })
       .catch((error: any) => {
-        console.error(error);
+        return error;
       }));
   }
 }

@@ -7,12 +7,12 @@ const isProduction = process.env.NODE_ENV === "production";
 
 const config = {
   entry: "./src/index.tsx",
-
+  devtool: "inline-source-map",
   module: {
     rules: [
       {
-        test: /\.(ts|js)x?$ /,
-        exclude: [/node_modules/, /^(?!.*\.test\.tsx$).*\.ts$/],
+        test: /\.(ts|js)x?$/,
+        exclude: [/node_modules/],
         use: {
           loader: "babel-loader",
           options: {
@@ -34,7 +34,7 @@ const config = {
     ],
   },
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".css", ".scss"],
+    extensions: [".tsx", ".ts", ".js", ".css", ".scss"],
   },
   output: {
     publicPath: isProduction ? "/control_panel_ui/" : "/",
