@@ -33,16 +33,10 @@ export const Login = (props: Form) => {
       <p className="login_title">Please login first</p>
       <form id="login" className="Login" onSubmit={handleSubmit}>
         <label htmlFor="login">Login</label>
-        <input type="text" name="login" id="login" value={login} onChange={(e) => setLogin(e.target.value)} />
+        <input type="text" name="login" value={login} onChange={(e) => setLogin(e.target.value)} />
 
         <label htmlFor="password">Password</label>
-        <input
-          type="text"
-          name="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <input type="text" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         <div>
           <button type="submit">Submit</button>
         </div>
