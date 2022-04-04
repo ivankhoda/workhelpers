@@ -6,7 +6,6 @@ export const useToken = () => {
 
     if (tokenString) {
       let userToken = JSON.parse(tokenString);
-
       return userToken?.accessToken;
     }
   };
