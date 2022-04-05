@@ -1,10 +1,10 @@
+import { LoginController } from "./controllers/loginController";
+import { WalletAgent } from "./models/WalletAgent/WalletAgent";
 const dotenv = require("dotenv");
 
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-import { AuthorizationAgent } from "./models/AuthorizationAgent/AuthorizationAgent";
-import { WalletAgent } from "./models/WalletAgent/WalletAgent";
 
 //create server
 const app = express();
@@ -43,24 +43,9 @@ let orders = [
 
 app.use("/login", async (req, res) => {
   const { login, password } = req.body;
-
-  const authAgent = new AuthorizationAgent(login, password, trustor);
-  const getToken = async () => {
-    let data = await authAgent
-      .getTrustToken()
-      .then((res) => {
-        if (res.status !== 200) {
-          return res.toJSON().message;
-        }
-        return res.data;
-      })
-
-      .catch((err) => console.log(err, "error"));
-    return data;
-  };
-  let token = await getToken();
-
-  token ? res.json({ accessToken: token }) : res.json({ message: "Something went wrong" });
+  const loginController = new LoginController(login, password, trustor);
+  const response = await loginController.getToken();
+  console.log(typeof response, "response in index");
 });
 
 app.post("/wallet", async (req, res) => {
