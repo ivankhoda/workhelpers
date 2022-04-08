@@ -6,7 +6,7 @@ export const useToken = () => {
 
     if (tokenString) {
       let userToken = JSON.parse(tokenString);
-      return userToken?.accessToken;
+      return userToken?.data;
     }
   };
 
@@ -15,7 +15,7 @@ export const useToken = () => {
   const saveToken = (userToken: any) => {
     sessionStorage.setItem("token", JSON.stringify(userToken));
 
-    setToken(userToken.accessToken);
+    setToken(userToken.data);
   };
 
   return {

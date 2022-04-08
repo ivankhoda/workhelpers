@@ -19,8 +19,6 @@ export class WalletAgent {
   }
 
   async getWalletAmount() {
-    // let newToken = await this.getToken();
-
     const config = {
       headers: { Authorization: `${this.token}`, "content-type": "application/json" },
     };
@@ -33,12 +31,10 @@ export class WalletAgent {
       .post(this.url, body, config)
       .then((res: any) => {
         const data = res.data;
-
         return data;
       })
-
       .catch((error: any) => {
-        console.log(error);
+        return error;
       }));
   }
   async applyWallet() {
@@ -65,9 +61,8 @@ export class WalletAgent {
       });
   }
   async getWalletTransactions() {
-    let newToken = await this.getToken();
     const config = {
-      headers: { Authorization: `Bearer ${newToken}`, "content-type": "application/json" },
+      headers: { Authorization: `${this.token}`, "content-type": "application/json" },
     };
     const body = [
       { key: "in_wallet", value: ["true"] },
@@ -77,7 +72,7 @@ export class WalletAgent {
     axios
       .post(this.url, body, config)
       .then((res: any) => {
-        console.log(res.data);
+        console.log(res.data, "response in transactions");
       })
       .catch((error: any) => {
         console.log(error);

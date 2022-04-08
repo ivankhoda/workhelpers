@@ -44,23 +44,22 @@ let orders = [
 app.use("/login", async (req, res) => {
   const { login, password } = req.body;
   const loginController = new LoginController(login, password, trustor);
-  const response = await loginController.getToken();
-  console.log(typeof response, "response in index");
+  const getResponse = async () => await loginController.getToken();
+  const response = await getResponse();
+
+  res.json({ data: response });
 });
 
 app.post("/wallet", async (req, res) => {
   const token = req.headers["authorization"];
-
   const walletAgent = new WalletAgent(token, walletURL, testCustomer, orders);
-
-  let balance;
   const getData = async () => {
     const result = await walletAgent.getWalletAmount().then((res) => res);
 
     return result;
   };
 
-  balance = await getData();
+  let balance = await getData();
 
   res.json(balance);
 });
