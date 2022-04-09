@@ -18,9 +18,8 @@ export class LoginController {
         if (res.status !== 200) {
           return res.toJSON().message;
         }
-
         return res.data;
       })
-      .catch((err) => console.log(err, "error"));
+      .catch((err) => err);
   }
 }

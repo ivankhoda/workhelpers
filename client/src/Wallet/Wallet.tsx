@@ -12,16 +12,19 @@ export const Wallet = () => {
   const { getToken } = useToken();
   useEffect(() => {
     const token = getToken();
+    const body = [
+      { key: "in_wallet", values: ["true"] },
+      { key: "state", values: ["open"] },
+      { key: "debitor_id", values: [`CRM105510`] },
+    ];
 
     const getData = async () => {
       const result = await fetch("http://localhost:3000/wallet", {
         method: "POST",
-
         headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
-        // body: JSON.stringify(token),
-        //token,
+        body: JSON.stringify(body),
       });
-      //console.log(await result.json(), "result");
+      // console.log(await result.json(), "result");
       setData(await result.json());
     };
     getData();

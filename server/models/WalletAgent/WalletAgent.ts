@@ -1,34 +1,35 @@
 const axios = require("axios");
 export class WalletAgent {
-  token: string | void | Promise<void>;
+  token: string;
   url: string;
-  customer: string;
+  options?: any;
   orders?: { number: string }[];
   balance?: string;
 
-  constructor(token: string | void | Promise<void>, url: string, customer: string, orders?: { number: string }[]) {
+  constructor(token: string, url: string, options?: any, orders?: { number: string }[]) {
     this.token = token;
     this.url = url;
-    this.customer = customer;
+    //TODO: customer might need to be dleted
+
     this.orders = orders;
+    this.options = options;
   }
 
-  private async getToken() {
-    let newToken = await this.token;
-    return newToken;
+  private authorize() {
+    if (this.token) {
+      return { headers: { Authorization: `${this.token}`, "content-type": "application/json" } };
+    }
+  }
+  private getRequestBody() {
+    if (this.options) {
+      return this.options;
+    }
   }
 
   async getWalletAmount() {
-    const config = {
-      headers: { Authorization: `${this.token}`, "content-type": "application/json" },
-    };
-    const body = [
-      { key: "in_wallet", values: ["true"] },
-      { key: "state", values: ["open"] },
-      { key: "debitor_id", values: [`${this.customer}`] },
-    ];
+    console.log(this.getRequestBody(), "req body");
     return (this.balance = await axios
-      .post(this.url, body, config)
+      .post(this.url, this.getRequestBody(), this.authorize())
       .then((res: any) => {
         const data = res.data;
         return data;
@@ -38,45 +39,41 @@ export class WalletAgent {
       }));
   }
   async applyWallet() {
-    let newToken = await this.getToken();
-    const config = {
-      headers: { Authorization: `Bearer ${newToken}`, "content-type": "application/json" },
-    };
-    const body = {
-      customer: {
-        number: `${this.customer}`,
-      },
-      wallet: {
-        currency: "EUR",
-      },
-      orders: this.orders,
-    };
-    axios
-      .put(this.url, body, config)
-      .then((res: any) => {
-        console.log(res.data);
-      })
-      .catch((error: any) => {
-        console.log(error);
-      });
+    // const body = {
+    //   customer: {
+    //     number: `${this.customer}`,
+    //   },
+    //   wallet: {
+    //     currency: "EUR",
+    //   },
+    //   orders: this.orders,
+    // };
+    // axios
+    //   .put(this.url, body, this.authorize())
+    //   .then((res: any) => {
+    //     console.log(res.data);
+    //   })
+    //   .catch((error: any) => {
+    //     console.log(error);
+    //   });
   }
   async getWalletTransactions() {
-    const config = {
-      headers: { Authorization: `${this.token}`, "content-type": "application/json" },
-    };
-    const body = [
-      { key: "in_wallet", value: ["true"] },
-      { key: "state", value: ["open"] },
-      { key: "debitor_id", value: [`${this.customer}`] },
-    ];
-    axios
-      .post(this.url, body, config)
-      .then((res: any) => {
-        console.log(res.data, "response in transactions");
-      })
-      .catch((error: any) => {
-        console.log(error);
-      });
+    // const config = {
+    //   headers: { Authorization: `${this.token}`, "content-type": "application/json" },
+    // };
+    // // const body = [
+    // //   { key: "in_wallet", value: ["true"] },
+    // //   { key: "state", value: ["open"] },
+    // //   { key: "debitor_id", value: [`${this.customer}`] },
+    // // ];
+    // axios
+    //   .post(this.url, body, config)
+    //   .then((res: any) => {
+    //     console.log(res.data, "response in transactions");
+    //   })
+    //   .catch((error: any) => {
+    //     console.log(error);
+    //   });
   }
 
   log() {}
