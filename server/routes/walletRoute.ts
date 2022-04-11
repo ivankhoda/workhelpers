@@ -1,6 +1,5 @@
 import { WalletController } from "../controllers/WalletController";
 const walletURL = process.env.WALLET_URL;
-const testCustomer = process.env.TEST_CUSTOMER;
 const routerToWallet = require("express").Router();
 
 routerToWallet.post("/wallet", async function (req, res) {

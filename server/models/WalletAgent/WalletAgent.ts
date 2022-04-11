@@ -9,8 +9,6 @@ export class WalletAgent {
   constructor(token: string, url: string, options?: any, orders?: { number: string }[]) {
     this.token = token;
     this.url = url;
-    //TODO: customer might need to be dleted
-
     this.orders = orders;
     this.options = options;
   }
@@ -27,7 +25,6 @@ export class WalletAgent {
   }
 
   async getWalletAmount() {
-    console.log(this.getRequestBody(), "req body");
     return (this.balance = await axios
       .post(this.url, this.getRequestBody(), this.authorize())
       .then((res: any) => {
