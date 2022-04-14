@@ -9,16 +9,12 @@ export class AuthorizationAgent {
   trustor?: string;
   token?: undefined;
   trustToken?: string;
-  constructor(
-    login: string | undefined,
-    password: string | undefined,
-    trustor?: string,
-    token?: string,
-    trustToken?: string
-  ) {
+  platformUrl?: string;
+  constructor(login: string | undefined, password: string | undefined, trustor?: string, platformUrl?: string) {
     this.login = login;
     this.password = password;
     this.trustor = trustor;
+    this.platformUrl = platformUrl ? platformUrl : baseURL;
   }
 
   async getToken() {
@@ -27,12 +23,11 @@ export class AuthorizationAgent {
       password: `${this.password}`,
     };
     this.token = await axios
-      .post(`${baseURL}/api/v0/registry/oauth/token`, config)
+      .post(`${this.platformUrl}/api/v0/registry/oauth/token`, config)
       .then((res: any) => {
         return res.data;
       })
       .catch((error: any) => {
-        console.log(error.response.data, "token");
         return error;
       });
   }

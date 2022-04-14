@@ -1,12 +1,13 @@
+import { Router } from "express";
 import { LoginController } from "../controllers/loginController";
 const trustor = process.env.TRUSTOR;
-const routerToLogin = require("express").Router();
+const routerToLogin = Router();
 
 routerToLogin.post("/login", async function (req, res) {
-  const { login, password } = req.body;
-  const loginController = new LoginController(login, password, trustor);
+  const { login, password, platformUrl } = req.body;
+  const loginController = new LoginController(login, password, trustor, platformUrl);
   const getResponse = async () => await loginController.getToken();
   const response = await getResponse();
   res.json({ data: response });
 });
-module.exports = routerToLogin;
+export default routerToLogin;

@@ -1,6 +1,7 @@
+import { Router } from "express";
 import { WalletController } from "../controllers/WalletController";
 const walletURL = process.env.WALLET_URL;
-const routerToWallet = require("express").Router();
+const routerToWallet = Router();
 
 routerToWallet.post("/wallet", async function (req, res) {
   const token = req.headers["authorization"];
@@ -11,4 +12,4 @@ routerToWallet.post("/wallet", async function (req, res) {
 
   res.json(response);
 });
-module.exports = routerToWallet;
+export default routerToWallet;
