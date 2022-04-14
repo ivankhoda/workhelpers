@@ -22,13 +22,14 @@ type CustomerInfo = {
 export const Wallet = () => {
   const [wallet, setWallet] = useState<WalletInfo>();
   const [customers, setCustomers] = useState<CustomerInfo[]>([]);
+  const [client, setClient] = useState<string>();
   const { getToken } = useToken();
   useEffect(() => {
     const token = getToken();
     const body = [
       { key: "in_wallet", values: ["true"] },
       { key: "state", values: ["open"] },
-      { key: "debitor_id", values: [`CRM105510`] },
+      { key: "debitor_id", values: [`${client}`] },
     ];
 
     const getData = async () => {
@@ -48,14 +49,16 @@ export const Wallet = () => {
     };
 
     getData();
-  }, []);
+  }, [client]);
 
-  {
-    customers.forEach((customer) => console.log(customer["number"]));
-  }
+  const onSelect = (e: React.FormEvent<HTMLSelectElement>) => {
+    e.preventDefault();
+    setClient(e.currentTarget.value);
+    console.log(e.currentTarget.value, "client");
+  };
   return (
     <>
-      <select>
+      <select onChange={onSelect}>
         {customers.length != 0 ? (
           customers.map((customer) => (
             <option key={customer.id} value={customer.number}>
@@ -66,7 +69,6 @@ export const Wallet = () => {
           <></>
         )}
       </select>
-      <button>Apply</button>
 
       <Customers />
       <div className="wallet">
