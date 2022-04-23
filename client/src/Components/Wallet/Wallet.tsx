@@ -41,10 +41,9 @@ export const Wallet = () => {
       const customers = await fetch("http://localhost:3000/customers/all", {
         method: "GET",
         headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
-        // body: JSON.stringify(body),
       });
       setCustomers(await customers.json());
-      // console.log(await result.json(), "result");
+
       setWallet(await wallet.json());
     };
 
@@ -54,7 +53,6 @@ export const Wallet = () => {
   const onSelect = (e: React.FormEvent<HTMLSelectElement>) => {
     e.preventDefault();
     setClient(e.currentTarget.value);
-    console.log(e.currentTarget.value, "client");
   };
   return (
     <>

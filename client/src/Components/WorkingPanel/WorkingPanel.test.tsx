@@ -1,4 +1,4 @@
-import { createContainer } from "../../TestHelpers/domManipulators";
+import { createContainer } from "../../../TestHelpers/domManipulators";
 
 describe("Working panel", () => {
   let container, render;

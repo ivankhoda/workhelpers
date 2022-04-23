@@ -1,3 +1,4 @@
+import Dotenv from "dotenv-webpack";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
@@ -35,6 +36,7 @@ const config = {
   },
   resolve: {
     extensions: [".tsx", ".ts", ".js", ".css", ".scss"],
+    fallback: { url: false },
   },
   output: {
     publicPath: isProduction ? "/control_panel_ui/" : "/",
@@ -63,6 +65,7 @@ const config = {
         removeAttributeQuotes: true,
       },
     }),
+    new Dotenv(),
   ],
 };
 

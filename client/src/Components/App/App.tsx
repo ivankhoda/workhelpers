@@ -1,13 +1,13 @@
 import React from "react";
 import { Route, Routes } from "react-router";
 import { HashRouter } from "react-router-dom";
+import "../../style.scss";
 import { Dashboard } from "../Dashboard/Dashboard";
 import { Header } from "../Header/Header";
 import { Login } from "../Login/Login";
 import { Main } from "../Main/Main";
 import { Sidebar } from "../Sidebar/Sidebar";
 import { Statistics } from "../Statistics/Statistics";
-import "../style.scss";
 import { Wallet } from "../Wallet/Wallet";
 import { WorkingPanel } from "../WorkingPanel/WorkingPanel";
 import "./App.style.scss";
